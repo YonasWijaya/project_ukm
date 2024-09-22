@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bulanFragment">
+
+    <fragment
+        android:id="@+id/bulanFragment"
+        android:name="id.ac.umn.project_ukm.BulanFragment"
+        android:label="BulanFragment" >
+        <action
+            android:id="@+id/action_bulanFragment_to_isiBulanFragment"
+            app:destination="@id/isiBulanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/variableFragment"
+        android:name="id.ac.umn.project_ukm.VariableFragment"
+        android:label="VariableFragment" >
+        <action
+            android:id="@+id/action_variableFragment_to_tambahVariableFragment"
+            app:destination="@id/tambahVariableFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahVariableFragment"
+        android:name="id.ac.umn.project_ukm.TambahVariableFragment"
+        android:label="fragment_tambah_variable"
+        tools:layout="@layout/fragment_tambah_variable" >
+        <action
+            android:id="@+id/action_tambahVariableFragment_to_variableFragment"
+            app:destination="@id/variableFragment"
+            app:popUpTo="@id/variableFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/isiBulanFragment"
+        android:name="id.ac.umn.project_ukm.IsiBulanFragment"
+        android:label="fragment_isi_bulan"
+        tools:layout="@layout/fragment_isi_bulan" >
+        <argument
+            android:name="TahunBulanKey"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_isiBulanFragment_to_hariFragment"
+            app:destination="@id/hariFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hariFragment"
+        android:name="id.ac.umn.project_ukm.HariFragment"
+        android:label="fragment_hari"
+        tools:layout="@layout/fragment_hari" >
+        <action
+            android:id="@+id/action_hariFragment_to_kasHarianFragment"
+            app:destination="@id/kasHarianFragment" />
+        <argument
+            android:name="TahunBulanKey"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/kasHarianFragment"
+        android:name="id.ac.umn.project_ukm.KasHarianFragment"
+        android:label="fragment_kas_harian"
+        tools:layout="@layout/fragment_kas_harian" >
+        <argument
+            android:name="HariKey"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_kasHarianFragment_to_tambahKasHarianFragment"
+            app:destination="@id/tambahKasHarianFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahKasHarianFragment"
+        android:name="id.ac.umn.project_ukm.TambahKasHarianFragment"
+        android:label="fragment_tambah_kas_harian"
+        tools:layout="@layout/fragment_tambah_kas_harian" >
+        <argument
+            android:name="HariKey"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tambahKasHarianFragment_to_kasHarianFragment"
+            app:destination="@id/kasHarianFragment"
+            app:popUpTo="@id/kasHarianFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

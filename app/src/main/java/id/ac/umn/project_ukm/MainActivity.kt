@@ -31,6 +31,7 @@ import com.google.firebase.auth.FirebaseAuth
 import id.ac.umn.project_ukm.ui.theme.Project_ukmTheme
 
 class MainActivity : ComponentActivity() {
+    //untuk mengurus login
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract(),
     ) {res -> this.onSignInResult(res)}
@@ -49,6 +50,8 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    //setting tipe autentikasi yang digunakan
     fun createSignInIntent(){
         val providers = arrayListOf(
             AuthUI.IdpConfig.GoogleBuilder().build()
@@ -59,18 +62,21 @@ class MainActivity : ComponentActivity() {
         signInLauncher.launch(signInIntent)
     }
 
+    //kalau berhasil login
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult){
         if (result.resultCode == RESULT_OK){
             goInside()
         }
     }
 
+    //masuk ke activity lain
     private fun goInside(){
         val i = Intent(this, InsideActivity::class.java)
         startActivity(i)
         finish()
     }
 
+    //override onstart supaya bisa otomatis masuk
     override fun onStart() {
         super.onStart()
         val user = FirebaseAuth.getInstance().currentUser
@@ -86,11 +92,13 @@ fun HalamanLogin(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row {
+            //nama aplikasi
             Text("Nama Aplikasi",
                 textAlign = TextAlign.Center,
                 fontSize = 60.sp)
         }
         Row {
+            //tombol login
             OutlinedButton(onClick = { MainActivity().createSignInIntent() },
                 modifier = Modifier.size(width = 250.dp, height = 100.dp).padding(top = 20.dp)) {
                 Image(painterResource(R.drawable.fui_ic_googleg_color_24dp),
