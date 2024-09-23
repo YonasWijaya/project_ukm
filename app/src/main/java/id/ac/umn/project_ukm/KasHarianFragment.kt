@@ -5,17 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import id.ac.umn.project_ukm.databinding.FragmentKasHarianBinding
 
 class KasHarianFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_kas_harian, container, false)
+        val binding = DataBindingUtil.inflate<FragmentKasHarianBinding>(inflater, R.layout.fragment_kas_harian, container, false)
+        binding.btnTambahIsi.setOnClickListener {
+            it.findNavController().navigate(R.id.action_kasHarianFragment_to_tambahKasHarianFragment)
+        }
+
+        return binding.root
     }
 }

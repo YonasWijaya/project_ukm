@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/bulanFragment"
         android:name="id.ac.umn.project_ukm.BulanFragment"
-        android:label="BulanFragment" >
+        android:label="Daftar Bulan" >
         <action
             android:id="@+id/action_bulanFragment_to_isiBulanFragment"
             app:destination="@id/isiBulanFragment" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/variableFragment"
         android:name="id.ac.umn.project_ukm.VariableFragment"
-        android:label="VariableFragment" >
+        android:label="Daftar Barang" >
         <action
             android:id="@+id/action_variableFragment_to_tambahVariableFragment"
             app:destination="@id/tambahVariableFragment" />
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/tambahVariableFragment"
         android:name="id.ac.umn.project_ukm.TambahVariableFragment"
-        android:label="fragment_tambah_variable"
+        android:label="Tambah Barang"
         tools:layout="@layout/fragment_tambah_variable" >
         <action
             android:id="@+id/action_tambahVariableFragment_to_variableFragment"
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/isiBulanFragment"
         android:name="id.ac.umn.project_ukm.IsiBulanFragment"
-        android:label="fragment_isi_bulan"
+        android:label="Nama Bulan"
         tools:layout="@layout/fragment_isi_bulan" >
         <argument
             android:name="TahunBulanKey"
@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/hariFragment"
         android:name="id.ac.umn.project_ukm.HariFragment"
-        android:label="fragment_hari"
+        android:label="Daftar Hari Bulan"
         tools:layout="@layout/fragment_hari" >
         <action
             android:id="@+id/action_hariFragment_to_kasHarianFragment"
@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/kasHarianFragment"
         android:name="id.ac.umn.project_ukm.KasHarianFragment"
-        android:label="fragment_kas_harian"
+        android:label="Kas Harian Tanggal Ini"
         tools:layout="@layout/fragment_kas_harian" >
         <argument
             android:name="HariKey"
@@ -71,7 +71,7 @@
     <fragment
         android:id="@+id/tambahKasHarianFragment"
         android:name="id.ac.umn.project_ukm.TambahKasHarianFragment"
-        android:label="fragment_tambah_kas_harian"
+        android:label="Tambah Pembukuan"
         tools:layout="@layout/fragment_tambah_kas_harian" >
         <argument
             android:name="HariKey"

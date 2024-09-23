@@ -20,6 +20,9 @@ class BulanFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentBulanBinding>(inflater, R.layout.fragment_bulan, container, false)
+        binding.btnTambahBulan.setOnClickListener{
+
+        }
 
         return binding.root
     }

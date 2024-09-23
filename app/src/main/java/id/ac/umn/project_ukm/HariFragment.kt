@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import id.ac.umn.project_ukm.databinding.FragmentBulanBinding
+import id.ac.umn.project_ukm.databinding.FragmentHariBinding
 
 class HariFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,8 +17,13 @@ class HariFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hari, container, false)
+        val binding = DataBindingUtil.inflate<FragmentHariBinding>(inflater, R.layout.fragment_hari, container, false)
+        binding.btnTambahHari.setOnClickListener{
+
+        }
+
+        return binding.root
     }
 }

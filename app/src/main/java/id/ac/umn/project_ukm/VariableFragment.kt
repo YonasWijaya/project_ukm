@@ -6,20 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import id.ac.umn.project_ukm.databinding.FragmentVariableBinding
 
 class VariableFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = DataBindingUtil.inflate<FragmentVariableBinding>(inflater, R.layout.fragment_variable, container, false)
-
+        binding.btnTambahVariable.setOnClickListener{
+            it.findNavController().navigate(R.id.action_variableFragment_to_tambahVariableFragment)
+        }
         return binding.root
     }
 }

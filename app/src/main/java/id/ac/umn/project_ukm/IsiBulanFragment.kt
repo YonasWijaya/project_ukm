@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import id.ac.umn.project_ukm.databinding.FragmentIsiBulanBinding
 
 class IsiBulanFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,8 +16,10 @@ class IsiBulanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_isi_bulan, container, false)
+        val binding = DataBindingUtil.inflate<FragmentIsiBulanBinding>(inflater, R.layout.fragment_isi_bulan, container, false)
+
+        return binding.root
     }
 }
