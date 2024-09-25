@@ -13,15 +13,18 @@ data class Variable(
 @Entity
 data class DataHarian(
     @PrimaryKey(true) val id: Int,
-    val tahunBulan: Int,
+    val tahun: Int,
+    val bulan: Int,
     val tanggal: Int,
-    val keterangan: String,
+    val deskripsi: String,
+    val keteranganTambahan : String?,
     val tipe: String,
     val nominal: Int
 )
 
-@Entity(primaryKeys = ["tahunBulan", "tanggal"])
+@Entity(primaryKeys = ["tahun", "bulan", "tanggal"])
 data class Penanggalan(
-    val tahunBulan: Int,
+    val tahun: Int,
+    val bulan: Int,
     val tanggal: Int
 )

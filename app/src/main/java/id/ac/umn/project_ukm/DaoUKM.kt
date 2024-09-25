@@ -28,11 +28,11 @@ interface DaoDataHarian {
     @Delete
     fun deleteDataHarian(dataHarian: DataHarian)
 
-    @Query("SELECT * FROM DataHarian WHERE tahunBulan = :tahunBulan")
-    fun getBulanan(tahunBulan: Int): Array<DataHarian>
+    @Query("SELECT * FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan")
+    fun getBulanan(tahun: Int, bulan: Int): Array<DataHarian>
 
-    @Query("SELECT * FROM DataHarian WHERE tahunBulan = :tahunBulan AND tanggal = :tanggal")
-    fun getHarian(tahunBulan: Int, tanggal: Int): Array<DataHarian>
+    @Query("SELECT * FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan AND tanggal = :tanggal")
+    fun getHarian(tahun: Int, bulan: Int, tanggal: Int): Array<DataHarian>
 }
 
 @Dao
@@ -40,9 +40,9 @@ interface DaoPenanggalan {
     @Insert
     fun addPenanggalan(newPenanggalan: Penanggalan)
 
-    @Query("SELECT DISTINCT tahunBulan FROM Penanggalan")
-    fun getDaftarBulan(): Array<Int>
+    @Query("SELECT DISTINCT tahun, bulan FROM Penanggalan")
+    fun getDaftarBulan(): Pair<Int, Int>
 
-    @Query("SELECT tanggal FROM Penanggalan WHERE tahunBulan = :tahunBulan AND tanggal != 0")
-    fun getDaftarHari(tahunBulan: Int): Array<Int>
+    @Query("SELECT tanggal FROM Penanggalan WHERE tahun = :tahun AND bulan = :bulan")
+    fun getDaftarHari(tahun: Int, bulan: Int): Array<Int>
 }
