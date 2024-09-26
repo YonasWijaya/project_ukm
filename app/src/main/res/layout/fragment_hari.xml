@@ -22,6 +22,66 @@
                 android:layout_margin="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <DatePicker
+                android:id="@+id/pilihHari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:datePickerMode="calendar"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/teksHari1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="Apakah Anda yakin ingin membuat jurnal untuk tanggal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pilihHari"
+                app:layout_constraintVertical_bias="0.3"/>
+            <TextView
+                android:id="@+id/teksHari2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="99 sdfgtrg 0000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/teksHari1"/>
+            <Button
+                android:id="@+id/btnSimpanHari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Simpan"
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/btnBatalHari"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/teksHari2"/>
+            <Button
+                android:id="@+id/btnBatalHari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Batal"
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnSimpanHari"
+                app:layout_constraintTop_toBottomOf="@id/teksHari2"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hariList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/btnTambahHari"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

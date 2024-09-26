@@ -1,13 +1,10 @@
 package id.ac.umn.project_ukm
 
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import androidx.compose.material3.DatePicker
 import androidx.databinding.DataBindingUtil
 import id.ac.umn.project_ukm.databinding.FragmentBulanBinding
 import java.time.LocalDate
@@ -18,7 +15,6 @@ class BulanFragment : Fragment() {
     private lateinit var binding: FragmentBulanBinding
     private lateinit var db: DatabaseUKM
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,11 +36,12 @@ class BulanFragment : Fragment() {
         }
 
         binding.btnSimpanBulan.setOnClickListener {
-            visibilityCalendar(View.GONE)
-            visibilityList(View.VISIBLE)
             val bulan = db.getPenanggalanDao()
             val newBulan = Penanggalan(binding.pilihBulan.year, binding.pilihBulan.month + 1, binding.pilihBulan.dayOfMonth)
             bulan.addPenanggalan(newBulan)
+            binding.bulanList.adapter = BulanAdapter(daftarBulan(bulan.getDaftarBulan()), false)
+            visibilityCalendar(View.GONE)
+            visibilityList(View.VISIBLE)
         }
 
         binding.pilihBulan.setOnDateChangedListener{ _, tahun, bulan, tanggal ->
@@ -52,6 +49,9 @@ class BulanFragment : Fragment() {
             val format = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("id", "ID"))
             binding.teksBulan2.text = hari.format(format)
         }
+
+        val bulan = db.getPenanggalanDao().getDaftarBulan()
+        binding.bulanList.adapter = BulanAdapter(daftarBulan(bulan), false)
 
         return binding.root
     }
@@ -67,5 +67,16 @@ class BulanFragment : Fragment() {
         binding.teksBulan2.visibility = code
         binding.btnSimpanBulan.visibility = code
         binding.btnBatalBulan.visibility = code
+    }
+
+    private fun daftarBulan(bulanInput: Array<String>): Array<Penanggalan> {
+        bulanInput.sort()
+        var temp: Array<Penanggalan> = arrayOf()
+        for(tiapBulan in bulanInput){
+            val bulanTemp = Penanggalan(tiapBulan.substring(0, 4).toInt(),
+                tiapBulan.substring(4).toInt(), 1)
+            temp += bulanTemp
+        }
+        return temp
     }
 }

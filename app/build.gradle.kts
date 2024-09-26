@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "id.ac.umn.project_ukm"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

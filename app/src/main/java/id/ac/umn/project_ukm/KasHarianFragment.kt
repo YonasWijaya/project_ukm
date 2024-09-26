@@ -17,8 +17,11 @@ class KasHarianFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentKasHarianBinding>(inflater, R.layout.fragment_kas_harian, container, false)
+        val key = arguments?.getString("TahunBulanKey")
         binding.btnTambahIsi.setOnClickListener {
-            it.findNavController().navigate(R.id.action_kasHarianFragment_to_tambahKasHarianFragment)
+            val bundle = Bundle()
+            bundle.putString("TahunBulanKey", key)
+            it.findNavController().navigate(R.id.action_kasHarianFragment_to_tambahKasHarianFragment, bundle)
         }
 
         return binding.root

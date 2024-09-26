@@ -41,9 +41,9 @@ interface DaoPenanggalan {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addPenanggalan(newPenanggalan: Penanggalan)
 
-    @Query("SELECT DISTINCT (tahun || bulan) FROM Penanggalan")
-    fun getDaftarBulan(): Array<Int>
+    @Query("SELECT DISTINCT (tahun || PRINTF('%02d', bulan)) FROM Penanggalan")
+    fun getDaftarBulan(): Array<String>
 
-    @Query("SELECT tanggal FROM Penanggalan WHERE tahun = :tahun AND bulan = :bulan")
-    fun getDaftarHari(tahun: Int, bulan: Int): Array<Int>
+    @Query("SELECT * FROM Penanggalan WHERE tahun = :tahun AND bulan = :bulan")
+    fun getDaftarHari(tahun: Int, bulan: Int): Array<Penanggalan>
 }

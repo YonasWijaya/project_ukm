@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/isiBulanFragment"
         android:name="id.ac.umn.project_ukm.IsiBulanFragment"
-        android:label="Nama Bulan"
+        android:label="Isi Bulan"
         tools:layout="@layout/fragment_isi_bulan" >
         <argument
             android:name="TahunBulanKey"
@@ -62,7 +62,7 @@
         android:label="Kas Harian Tanggal Ini"
         tools:layout="@layout/fragment_kas_harian" >
         <argument
-            android:name="HariKey"
+            android:name="TahunBulanKey"
             app:argType="string" />
         <action
             android:id="@+id/action_kasHarianFragment_to_tambahKasHarianFragment"
@@ -74,7 +74,7 @@
         android:label="Tambah Pembukuan"
         tools:layout="@layout/fragment_tambah_kas_harian" >
         <argument
-            android:name="HariKey"
+            android:name="TahunBulanKey"
             app:argType="string" />
         <action
             android:id="@+id/action_tambahKasHarianFragment_to_kasHarianFragment"
