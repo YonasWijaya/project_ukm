@@ -16,6 +16,7 @@ import java.util.Locale
 
 class BulanFragment : Fragment() {
     private lateinit var binding: FragmentBulanBinding
+    private lateinit var db: DatabaseUKM
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -24,6 +25,7 @@ class BulanFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bulan, container, false)
+        db = DatabaseUKM.getDatabase(requireContext())
         binding.btnTambahBulan.setOnClickListener {
             visibilityCalendar(View.VISIBLE)
             visibilityList(View.GONE)
@@ -40,6 +42,9 @@ class BulanFragment : Fragment() {
         binding.btnSimpanBulan.setOnClickListener {
             visibilityCalendar(View.GONE)
             visibilityList(View.VISIBLE)
+            val bulan = db.getPenanggalanDao()
+            val newBulan = Penanggalan(binding.pilihBulan.year, binding.pilihBulan.month + 1, binding.pilihBulan.dayOfMonth)
+            bulan.addPenanggalan(newBulan)
         }
 
         binding.pilihBulan.setOnDateChangedListener{ _, tahun, bulan, tanggal ->
