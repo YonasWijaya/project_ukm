@@ -17,7 +17,7 @@ class KasHarianFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentKasHarianBinding>(inflater, R.layout.fragment_kas_harian, container, false)
-        val key = arguments?.getString("TahunBulanKey")
+        val key = requireArguments().getString("TahunBulanKey")
         binding.btnTambahIsi.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("TahunBulanKey", key)

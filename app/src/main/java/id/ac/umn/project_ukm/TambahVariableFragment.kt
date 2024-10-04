@@ -12,7 +12,6 @@ import id.ac.umn.project_ukm.databinding.FragmentTambahVariableBinding
 
 class TambahVariableFragment : Fragment() {
     private lateinit var binding : FragmentTambahVariableBinding
-    private lateinit var tipe: Array<String>
     private lateinit var db: DatabaseUKM
 
     override fun onCreateView(
@@ -24,10 +23,12 @@ class TambahVariableFragment : Fragment() {
         binding.batalBarang.setOnClickListener{ tambahBarang(false) }
         binding.simpanBarang.setOnClickListener{ tambahBarang(true) }
         db = DatabaseUKM.getDatabase(requireContext())
-        tipe = arrayOf("Bahan baku", "Produk")
-        val kategoriSpinner = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, tipe)
-        kategoriSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.kategoriBarang.adapter = kategoriSpinner
+
+        ArrayAdapter.createFromResource(requireContext(), R.array.tipe_barang, android.R.layout.simple_spinner_item).also {
+            adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.kategoriBarang.adapter = adapter
+        }
 
         return binding.root
     }
@@ -38,7 +39,7 @@ class TambahVariableFragment : Fragment() {
             val newBarang = Variable(id = 0, nama = binding.namaBarang.text.toString(), tipe = binding.kategoriBarang.selectedItem.toString())
             barang.addVariable(newBarang)
         }
-        val navController = view?.findNavController()
-        navController?.navigate(R.id.action_tambahVariableFragment_to_variableFragment)
+        val navController = requireView().findNavController()
+        navController.navigate(R.id.action_tambahVariableFragment_to_variableFragment)
     }
 }

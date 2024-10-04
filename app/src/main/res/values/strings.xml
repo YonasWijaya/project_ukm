@@ -2,4 +2,16 @@
     <string name="app_name">project_ukm</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="tipe_barang">
+        <item>Bahan baku</item>
+        <item>Produk</item>
+    </string-array>
+    <string-array name="tipe_data">
+        <item>Penjualan</item>
+        <item>Piutang</item>
+        <item>Pembelian</item>
+        <item>Hutang</item>
+        <item>Gaji</item>
+        <item>Biaya</item>
+    </string-array>
 </resources>

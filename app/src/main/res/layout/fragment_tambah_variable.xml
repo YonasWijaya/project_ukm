@@ -16,6 +16,8 @@
                 android:id="@+id/namaBarang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:minHeight="48dp"
                 android:hint="Nama Barang"
                 app:layout_constraintBottom_toTopOf="@id/kategoriBarang"

@@ -1,11 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".TambahKasHarianFragment">
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/namaHari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11 adfrgeg 1123"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
+            <Spinner
+                android:id="@+id/tipeData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toStartOf="@id/deskripsiData"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/namaHari"/>
+            <Spinner
+                android:id="@+id/deskripsiData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tipeData"
+                app:layout_constraintTop_toBottomOf="@id/namaHari"/>
+            <EditText
+                android:id="@+id/tambahanData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:hint="Keterangan Tambahan (Opsional)"
+                app:layout_constraintTop_toBottomOf="@id/tipeData"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <EditText
+                android:id="@+id/nominalData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:hint="Nominal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tambahanData"/>
+            <TextView
+                android:id="@+id/penjelasan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data akan ditampilkan pada jurnal kas harian sebagai berikut"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nominalData"/>
+            <TextView
+                android:id="@+id/penjelasan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="contohnya begini"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/penjelasan1"/>
+            <TextView
+                android:id="@+id/penjelasan3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                app:layout_constraintTop_toBottomOf="@id/penjelasan1"
+                app:layout_constraintStart_toEndOf="@id/penjelasan2"/>
+            <Button
+                android:id="@+id/btnBatalJurnal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Batal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/penjelasan2"
+                app:layout_constraintEnd_toStartOf="@id/btnSimpanJurnal"/>
+            <Button
+                android:id="@+id/btnSimpanJurnal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Simpan"
+                app:layout_constraintStart_toEndOf="@id/btnBatalJurnal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/penjelasan2"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>
