@@ -17,7 +17,6 @@
                 android:layout_height="wrap_content"
                 android:text="Tambah isi"
                 android:textAlignment="center"
-                android:drawableStart="@android:drawable/ic_input_add"
                 android:padding="16dp"
                 android:layout_margin="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +53,11 @@
                         android:text="Saldo (Rp)"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
+                    <TextView
+                        android:background="@drawable/table_line"
+                        android:text="Pengaturan"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
                 </TableRow>
                 <TableRow
                     android:padding="5dp">
@@ -64,7 +68,15 @@
                     <TextView
                         android:id="@+id/saldoAwal"
                         android:text="12345"/>
+                    <Button
+                        android:layout_marginHorizontal="10dp"
+                        android:backgroundTint="@color/design_default_color_error"
+                        android:text="HAPUS"
+                        app:cornerRadius="0dp" />
                 </TableRow>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/kasHarianList"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
             </TableLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

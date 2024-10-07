@@ -38,16 +38,16 @@ class HariFragment : Fragment() {
             visibilityList(View.VISIBLE)
         }
 
+        val hari = db.getPenanggalanDao().getDaftarHari(tahun = key?.substring(0, 4)!!.toInt(), bulan = key.substring(5, 7).toInt())
         binding.btnSimpanHari.setOnClickListener {
-            val hari = db.getPenanggalanDao()
+            val hariDao = db.getPenanggalanDao()
             val newHari = Penanggalan(binding.pilihHari.year, binding.pilihHari.month + 1, binding.pilihHari.dayOfMonth)
-            hari.addPenanggalan(newHari)
-
+            hariDao.addPenanggalan(newHari)
+            binding.hariList.adapter = BulanAdapter(hari, true)
             visibilityCalendar(View.GONE)
             visibilityList(View.VISIBLE)
         }
 
-        val hari = db.getPenanggalanDao().getDaftarHari(tahun = key?.substring(0, 4)!!.toInt(), bulan = key.substring(5, 7).toInt())
         binding.hariList.adapter = BulanAdapter(hari, true)
 
         return binding.root

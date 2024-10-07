@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TableRow
+        android:padding="5dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/keteranganHarianList"
+            android:scrollHorizontally="false"/>
+        <TextView
+            android:id="@+id/pemasukanHarianList"/>
+        <TextView
+            android:id="@+id/pengeluaranHarianList"/>
+        <TextView
+            android:id="@+id/saldoHarianList"/>
+        <Button
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="@color/design_default_color_error"
+            android:text="HAPUS"
+            app:cornerRadius="0dp"/>
+    </TableRow>
+</layout>
