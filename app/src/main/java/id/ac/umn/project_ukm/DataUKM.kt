@@ -19,7 +19,8 @@ data class DataHarian(
     val deskripsi: String,
     val keteranganTambahan : String?,
     val tipe: String,
-    val nominal: Int
+    val nominal: Int,
+    val debitKredit: Int //0 jika debit (pemasukan), 1 jika kredit (pengeluaran)
 )
 
 @Entity(primaryKeys = ["tahun", "bulan", "tanggal"])

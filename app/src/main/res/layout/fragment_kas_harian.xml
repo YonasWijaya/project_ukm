@@ -22,6 +22,50 @@
                 android:layout_margin="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TableLayout
+                android:id="@+id/tableJurnalHarian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:layout_marginHorizontal="30dp"
+                android:stretchColumns="*"
+                android:background="@drawable/table_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TableRow>
+                    <TextView
+                        android:background="@drawable/table_line"
+                        android:text="Keterangan"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:background="@drawable/table_line"
+                        android:text="Pemasukan (Rp)"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:background="@drawable/table_line"
+                        android:text="Pengeluaran (Rp)"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:background="@drawable/table_line"
+                        android:text="Saldo (Rp)"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                </TableRow>
+                <TableRow
+                    android:padding="5dp">
+                    <TextView
+                        android:text="Saldo Awal"/>
+                    <TextView/>
+                    <TextView/>
+                    <TextView
+                        android:id="@+id/saldoAwal"
+                        android:text="12345"/>
+                </TableRow>
+            </TableLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

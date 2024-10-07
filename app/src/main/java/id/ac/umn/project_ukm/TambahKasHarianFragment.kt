@@ -19,6 +19,7 @@ import java.util.Locale
 class TambahKasHarianFragment : Fragment() {
     private lateinit var binding: FragmentTambahKasHarianBinding
     private lateinit var db: DatabaseUKM
+    private var debitKredit: Int = 0 //0 jika debit (pemasukan), 1 jika kredit (pengeluaran)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,31 +59,37 @@ class TambahKasHarianFragment : Fragment() {
                         isi = list.getNama("Produk")
                         penjelasan = "Penjualan Tunai ${binding.deskripsiData.selectedItem} "
                         deskripsi = true
+                        debitKredit = 0
                     }
                     1 -> {
                         penjelasan = "Penerimaan Piutang "
                         deskripsi = false
                         isi = arrayOf("")
+                        debitKredit = 0
                     }
                     2 -> {
                         isi = list.getNama("Bahan baku")
                         penjelasan = "Pembelian ${binding.deskripsiData.selectedItem} "
                         deskripsi = true
+                        debitKredit = 1
                     }
                     3 -> {
                         penjelasan = "Pembayaran Hutang "
                         deskripsi = false
                         isi = arrayOf("")
+                        debitKredit = 1
                     }
                     4 -> {
                         penjelasan = "Pembayaran Gaji "
                         deskripsi = false
                         isi = arrayOf("")
+                        debitKredit = 1
                     }
                     5 -> {
                         penjelasan = "Biaya "
                         deskripsi = false
                         isi = arrayOf("")
+                        debitKredit = 1
                     }
                     else -> {
                         penjelasan = ""
@@ -102,21 +109,18 @@ class TambahKasHarianFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
                 binding.penjelasan3.text = s
             }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {  }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {  }
         })
         return binding.root
     }
 
     private fun tambahJurnal(sukses:Boolean, tanggal:String){
         if (sukses && binding.nominalData.text != null){
-
+            val jurnal = db.getHarianDao()
+            val split = tanggal.split("-")
+            val newJurnal = DataHarian(0, split[0].toInt(), split[1].toInt(), split[2].toInt(), binding.deskripsiData.selectedItem.toString(), binding.tambahanData.text.toString(), binding.tipeData.selectedItem.toString(), binding.nominalData.text.toString().toInt(), debitKredit)
+            jurnal.addHarian(newJurnal)
         }
         val bundle = Bundle()
         bundle.putString("TahunBulanKey", tanggal)

@@ -29,11 +29,20 @@ interface DaoDataHarian {
     @Delete
     fun deleteDataHarian(dataHarian: DataHarian)
 
-    @Query("SELECT * FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan")
+    @Query("SELECT * FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan") //data bulan tertentu
     fun getBulanan(tahun: Int, bulan: Int): Array<DataHarian>
 
-    @Query("SELECT * FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan AND tanggal = :tanggal")
+    @Query("SELECT * FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan AND tanggal = :tanggal") //data hari tertentu
     fun getHarian(tahun: Int, bulan: Int, tanggal: Int): Array<DataHarian>
+
+    @Query("SELECT SUM(nominal) FROM DataHarian WHERE tahun < :tahun AND debitKredit = :debitKredit")
+    fun getTotalTahunSebelum(tahun: Int, debitKredit: Int): Int?
+
+    @Query("SELECT SUM(nominal) FROM DataHarian WHERE tahun = :tahun AND bulan < :bulan AND debitKredit = :debitKredit")
+    fun getTotalBulanSebelum(tahun: Int, bulan: Int, debitKredit: Int): Int?
+
+    @Query("SELECT SUM(nominal) FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan AND tanggal < :tanggal AND debitKredit = :debitKredit")
+    fun getTotalHariSebelum(tahun: Int, bulan: Int, tanggal: Int, debitKredit: Int): Int?
 }
 
 @Dao
