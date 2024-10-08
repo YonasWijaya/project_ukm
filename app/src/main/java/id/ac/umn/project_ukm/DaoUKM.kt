@@ -43,6 +43,9 @@ interface DaoDataHarian {
 
     @Query("SELECT SUM(nominal) FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan AND tanggal < :tanggal AND debitKredit = :debitKredit")
     fun getTotalHariSebelum(tahun: Int, bulan: Int, tanggal: Int, debitKredit: Int): Int?
+
+    @Query("SELECT SUM(nominal) FROM DataHarian WHERE tahun = :tahun AND bulan = :bulan AND tanggal = :tanggal AND debitKredit = :debitKredit")
+    fun getTotalHariIni(tahun: Int, bulan: Int, tanggal: Int, debitKredit: Int): Int?
 }
 
 @Dao

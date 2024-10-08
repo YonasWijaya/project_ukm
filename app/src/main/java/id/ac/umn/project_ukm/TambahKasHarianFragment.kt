@@ -40,23 +40,19 @@ class TambahKasHarianFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.tipeData.adapter = adapter
         }
+
         binding.tipeData.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val list = db.getVarDao()
                 val isi: Array<String>
                 val penjelasan: String
                 val deskripsi: Boolean
                 when(position){
                     0 -> {
-                        isi = list.getNama("Produk")
+                        isi = list.getNama("Produk") + "Lain-lain"
                         penjelasan = "Penjualan Tunai ${binding.deskripsiData.selectedItem} "
                         deskripsi = true
                         debitKredit = 0
@@ -68,7 +64,7 @@ class TambahKasHarianFragment : Fragment() {
                         debitKredit = 0
                     }
                     2 -> {
-                        isi = list.getNama("Bahan baku")
+                        isi = list.getNama("Bahan baku") + "Lain-lain"
                         penjelasan = "Pembelian ${binding.deskripsiData.selectedItem} "
                         deskripsi = true
                         debitKredit = 1

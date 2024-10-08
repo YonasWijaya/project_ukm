@@ -34,50 +34,119 @@
                 app:layout_constraintTop_toTopOf="parent">
                 <TableRow>
                     <TextView
-                        android:background="@drawable/table_line"
                         android:text="Keterangan"
                         android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
                     <TextView
-                        android:background="@drawable/table_line"
                         android:text="Pemasukan (Rp)"
                         android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
                     <TextView
-                        android:background="@drawable/table_line"
                         android:text="Pengeluaran (Rp)"
                         android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
                     <TextView
-                        android:background="@drawable/table_line"
                         android:text="Saldo (Rp)"
                         android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
                     <TextView
-                        android:background="@drawable/table_line"
                         android:text="Pengaturan"
                         android:textStyle="bold"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
                 </TableRow>
                 <TableRow
                     android:padding="5dp">
                     <TextView
-                        android:text="Saldo Awal"/>
-                    <TextView/>
-                    <TextView/>
+                        android:text="Saldo Awal"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
                     <TextView
                         android:id="@+id/saldoAwal"
-                        android:text="12345"/>
-                    <Button
+                        android:text="12345"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
+                    <TextView
                         android:layout_marginHorizontal="10dp"
-                        android:backgroundTint="@color/design_default_color_error"
-                        android:text="HAPUS"
-                        app:cornerRadius="0dp" />
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
                 </TableRow>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/kasHarianList"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
             </TableLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/kasHarianList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginHorizontal="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tableJurnalHarian"/>
+            <TextView
+                android:id="@+id/pemasukanHarian1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Total Pemasukan: "
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/kasHarianList"/>
+            <TextView
+                android:id="@+id/pemasukanHarian2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12345"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toEndOf="@id/pemasukanHarian1"
+                app:layout_constraintTop_toBottomOf="@id/kasHarianList"/>
+            <TextView
+                android:id="@+id/pengeluaranHarian1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Total Pengeluaran: "
+                android:layout_marginLeft="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pemasukanHarian1"/>
+            <TextView
+                android:id="@+id/pengeluaranHarian2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12345"
+                app:layout_constraintStart_toEndOf="@id/pengeluaranHarian1"
+                app:layout_constraintTop_toBottomOf="@id/pemasukanHarian1"/>
+            <TextView
+                android:id="@+id/saldoAkhir1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Saldo Akhir: "
+                android:layout_marginLeft="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pengeluaranHarian1"/>
+            <TextView
+                android:id="@+id/saldoAkhir2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12345"
+                app:layout_constraintStart_toEndOf="@id/saldoAkhir1"
+                app:layout_constraintTop_toBottomOf="@id/pengeluaranHarian1"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

@@ -11,10 +11,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-class BulanAdapter(val bulan: Array<Penanggalan>, val adaTanggal: Boolean):
+class BulanAdapter(val bulan: Array<Penanggalan>, private val adaTanggal: Boolean):
     RecyclerView.Adapter<BulanAdapter.BulanViewHolder>() {
     class BulanViewHolder(item: View): RecyclerView.ViewHolder(item) {
-        val button = item.findViewById<Button>(R.id.btnBulanList)
+        val button: Button = item.findViewById(R.id.btnBulanList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BulanViewHolder {
@@ -24,24 +24,23 @@ class BulanAdapter(val bulan: Array<Penanggalan>, val adaTanggal: Boolean):
 
     override fun onBindViewHolder(holder: BulanViewHolder, position: Int) {
         val hari = LocalDate.of(bulan[position].tahun, bulan[position].bulan, bulan[position].tanggal)
-        val format: DateTimeFormatter
 
-        if (adaTanggal){
-            format = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("id", "ID"))
+        val format: DateTimeFormatter = if (adaTanggal){
+            DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("id", "ID"))
         } else {
-            format = DateTimeFormatter.ofPattern("MMMM yyyy", Locale("id", "ID"))
+            DateTimeFormatter.ofPattern("MMMM yyyy", Locale("id", "ID"))
         }
 
         holder.button.text = hari.format(format)
         holder.button.setOnClickListener {
             val navController = it.findNavController()
             val bundle = Bundle()
-            val navId: Int
             bundle.putString("TahunBulanKey", hari.toString())
-            if (adaTanggal){
-                navId = R.id.action_hariFragment_to_kasHarianFragment
+
+            val navId: Int = if (adaTanggal) {
+                R.id.action_hariFragment_to_kasHarianFragment
             } else {
-                navId = R.id.action_bulanFragment_to_isiBulanFragment
+                R.id.action_bulanFragment_to_isiBulanFragment
             }
             navController.navigate(navId, bundle)
         }

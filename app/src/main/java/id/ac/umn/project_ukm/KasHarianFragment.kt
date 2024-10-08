@@ -38,7 +38,27 @@ class KasHarianFragment : Fragment() {
         saldo -= dao.getTotalHariSebelum(penanggalan[0].toInt(), penanggalan[1].toInt(), penanggalan[2].toInt(), 1) ?: 0
         val format = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
         binding.saldoAwal.text = format.format(saldo)
+        setHasilAkhir(dao, format, penanggalan, saldo)
+
+        val kas = dao.getHarian(penanggalan[0].toInt(), penanggalan[1].toInt(), penanggalan[2].toInt())
+        val mutableKas = kas.toMutableList()
+        val adapter = KasHarianAdapter(mutableKas, saldo)
+        binding.kasHarianList.adapter = adapter
+        adapter.setSaldoListener(object: KasHarianAdapter.SaldoListener{
+            override fun saldoAkhir() {
+                setHasilAkhir(dao, format, penanggalan, saldo)
+            }
+        })
 
         return binding.root
+    }
+
+    private fun setHasilAkhir(dao: DaoDataHarian, format: NumberFormat, penanggalan: List<String>, saldo: Int) {
+        val pemasukan = dao.getTotalHariIni(penanggalan[0].toInt(), penanggalan[1].toInt(), penanggalan[2].toInt(), 0) ?: 0
+        val pengeluaran = dao.getTotalHariIni(penanggalan[0].toInt(), penanggalan[1].toInt(), penanggalan[2].toInt(), 1) ?: 0
+        val saldoAkhir = saldo + pemasukan - pengeluaran
+        binding.pemasukanHarian2.text = format.format(pemasukan)
+        binding.pengeluaranHarian2.text = format.format(pengeluaran)
+        binding.saldoAkhir2.text = format.format(saldoAkhir)
     }
 }
