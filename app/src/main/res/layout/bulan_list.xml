@@ -9,6 +9,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="BULAN 9999"
-            android:layout_marginTop="10dp"/>
+            android:textSize="@dimen/_7ssp"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"/>
     </FrameLayout>
 </layout>

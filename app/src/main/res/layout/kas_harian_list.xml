@@ -7,27 +7,33 @@
         android:stretchColumns="*"
         android:background="@drawable/table_line">
         <TableRow
-            android:padding="5dp">
+            android:baselineAligned="false"
+            android:padding="@dimen/_5sdp">
             <TextView
                 android:id="@+id/keteranganHarianList"
                 android:scrollHorizontally="false"
+                android:textSize="@dimen/_6ssp"
                 android:layout_width="0dp"
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/pemasukanHarianList"
+                android:textSize="@dimen/_6ssp"
                 android:layout_width="0dp"
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/pengeluaranHarianList"
+                android:textSize="@dimen/_6ssp"
                 android:layout_width="0dp"
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/saldoHarianList"
+                android:textSize="@dimen/_6ssp"
                 android:layout_width="0dp"
                 android:layout_weight="1"/>
             <Button
                 android:id="@+id/hapusKasHarian"
-                android:layout_marginHorizontal="10dp"
+                android:textSize="@dimen/_6ssp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
                 android:backgroundTint="@color/design_default_color_error"
                 android:text="HAPUS"
                 app:cornerRadius="0dp"

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import id.ac.umn.project_ukm.databinding.FragmentTambahKasHarianBinding
@@ -33,8 +34,30 @@ class TambahKasHarianFragment : Fragment() {
         val tanggal = LocalDate.parse(key)
         val format = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("id", "ID"))
         binding.namaHari.text = tanggal.format(format)
-        binding.btnBatalJurnal.setOnClickListener { tambahJurnal(false, key!!) }
-        binding.btnSimpanJurnal.setOnClickListener { tambahJurnal(true, key!!) }
+        binding.btnBatalJurnal.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("BATAL")
+                setMessage("Apakah anda yakin ingin membatalkan ini?")
+                setPositiveButton("Batal") {_, _ ->
+                    tambahJurnal(false, key!!)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
+        }
+        binding.btnSimpanJurnal.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("SIMPAN")
+                setMessage("Apakah anda yakin ingin menyimpan ini?")
+                setPositiveButton("Simpan") {_, _ ->
+                    tambahJurnal(true, key!!)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
+        }
         ArrayAdapter.createFromResource(requireContext(), R.array.tipe_data, android.R.layout.simple_spinner_item).also {
             adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

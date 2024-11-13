@@ -5,7 +5,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
+        android:padding="@dimen/_10sdp"
         tools:context=".VariableFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,9 +16,9 @@
                 android:id="@+id/btnTambahVariable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="40dp"
-                android:drawableStart="@android:drawable/ic_input_add"
-                android:padding="16dp"
+                android:layout_margin="@dimen/_20sdp"
+                android:padding="@dimen/_8sdp"
+                android:textSize="@dimen/_7ssp"
                 android:text="Tambah Barang"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +28,8 @@
                 android:id="@+id/tableVariable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
-                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
                 android:stretchColumns="*"
                 android:background="@drawable/table_line"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -40,11 +40,13 @@
                     <TextView
                         android:background="@drawable/table_line"
                         android:text="Nama"
+                        android:textSize="@dimen/_7ssp"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
                     <TextView
                         android:background="@drawable/table_line"
                         android:text="Tipe"
+                        android:textSize="@dimen/_7ssp"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
                 </TableRow>

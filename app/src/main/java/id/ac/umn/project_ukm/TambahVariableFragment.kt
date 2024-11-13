@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import id.ac.umn.project_ukm.databinding.FragmentTambahVariableBinding
@@ -20,8 +21,30 @@ class TambahVariableFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tambah_variable, container, false)
-        binding.batalBarang.setOnClickListener{ tambahBarang(false) }
-        binding.simpanBarang.setOnClickListener{ tambahBarang(true) }
+        binding.batalBarang.setOnClickListener{
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("BATAL")
+                setMessage("Apakah anda yakin ingin membatalkan ini?")
+                setPositiveButton("Batal") {_, _ ->
+                    tambahBarang(false)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
+        }
+        binding.simpanBarang.setOnClickListener{
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("SIMPAN")
+                setMessage("Apakah anda yakin ingin menyimpan ini?")
+                setPositiveButton("Simpan") {_, _ ->
+                    tambahBarang(true)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
+        }
         db = DatabaseUKM.getDatabase(requireContext())
 
         ArrayAdapter.createFromResource(requireContext(), R.array.tipe_barang, android.R.layout.simple_spinner_item).also {

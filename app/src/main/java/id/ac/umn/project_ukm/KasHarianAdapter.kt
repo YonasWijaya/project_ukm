@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import java.text.NumberFormat
 import java.util.Locale
@@ -48,13 +49,6 @@ RecyclerView.Adapter<KasHarianAdapter.KasHarianViewHolder>(){
         }
         holder.saldo.text = format.format(saldoAwal)
 
-        holder.hapusBtn.setOnClickListener {
-            db.getHarianDao().deleteDataHarian(kasHarian[position])
-            kasHarian.removeAt(position)
-            notifyItemRemoved(position)
-            saldoListener.saldoAkhir()
-        }
-
         val keterangan: String = when(kasHarian[position].tipe) {
             "Penjualan" -> {"Penjualan Tunai ${kasHarian[position].deskripsi} ${kasHarian[position].keteranganTambahan}"}
             "Piutang" -> {"Penerimaan Piutang ${kasHarian[position].keteranganTambahan}"}
@@ -65,6 +59,22 @@ RecyclerView.Adapter<KasHarianAdapter.KasHarianViewHolder>(){
             else -> {""}
         }
         holder.keterangan.text = keterangan
+
+        holder.hapusBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(holder.itemView.context)
+            with(builder) {
+                setTitle("HAPUS")
+                setMessage("Apakah anda yakin ingin menghapus ${holder.keterangan.text}?")
+                setPositiveButton("Hapus") {_, _ ->
+                    db.getHarianDao().deleteDataHarian(kasHarian[position])
+                    kasHarian.removeAt(position)
+                    notifyItemRemoved(position)
+                    saldoListener.saldoAkhir()
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
+        }
     }
 
     override fun getItemCount(): Int {

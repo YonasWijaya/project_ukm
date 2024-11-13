@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import id.ac.umn.project_ukm.databinding.FragmentBulanBinding
 import java.time.LocalDate
@@ -31,17 +32,35 @@ class BulanFragment : Fragment() {
         }
 
         binding.btnBatalBulan.setOnClickListener {
-            visibilityCalendar(View.GONE)
-            visibilityList(View.VISIBLE)
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("BATAL")
+                setMessage("Apakah anda yakin ingin membatalkan ini?")
+                setPositiveButton("Batal") {_, _ ->
+                    visibilityCalendar(View.GONE)
+                    visibilityList(View.VISIBLE)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
         }
 
         binding.btnSimpanBulan.setOnClickListener {
-            val bulan = db.getPenanggalanDao()
-            val newBulan = Penanggalan(binding.pilihBulan.year, binding.pilihBulan.month + 1, binding.pilihBulan.dayOfMonth)
-            bulan.addPenanggalan(newBulan)
-            binding.bulanList.adapter = BulanAdapter(daftarBulan(bulan.getDaftarBulan()), false)
-            visibilityCalendar(View.GONE)
-            visibilityList(View.VISIBLE)
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("SIMPAN")
+                setMessage("Apakah anda yakin ingin menyimpan ini?")
+                setPositiveButton("Simpan") {_, _ ->
+                    val bulan = db.getPenanggalanDao()
+                    val newBulan = Penanggalan(binding.pilihBulan.year, binding.pilihBulan.month + 1, binding.pilihBulan.dayOfMonth)
+                    bulan.addPenanggalan(newBulan)
+                    binding.bulanList.adapter = BulanAdapter(daftarBulan(bulan.getDaftarBulan()), false)
+                    visibilityCalendar(View.GONE)
+                    visibilityList(View.VISIBLE)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
         }
 
         binding.pilihBulan.setOnDateChangedListener{ _, tahun, bulan, tanggal ->

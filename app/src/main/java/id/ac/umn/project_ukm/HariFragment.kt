@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import id.ac.umn.project_ukm.databinding.FragmentBulanBinding
@@ -34,18 +35,36 @@ class HariFragment : Fragment() {
         }
 
         binding.btnBatalHari.setOnClickListener {
-            visibilityCalendar(View.GONE)
-            visibilityList(View.VISIBLE)
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("BATAL")
+                setMessage("Apakah anda yakin ingin membatalkan ini?")
+                setPositiveButton("Batal") {_, _ ->
+                    visibilityCalendar(View.GONE)
+                    visibilityList(View.VISIBLE)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
         }
 
         val hari = db.getPenanggalanDao().getDaftarHari(tahun = key?.substring(0, 4)!!.toInt(), bulan = key.substring(5, 7).toInt())
         binding.btnSimpanHari.setOnClickListener {
-            val hariDao = db.getPenanggalanDao()
-            val newHari = Penanggalan(binding.pilihHari.year, binding.pilihHari.month + 1, binding.pilihHari.dayOfMonth)
-            hariDao.addPenanggalan(newHari)
-            binding.hariList.adapter = BulanAdapter(hari, true)
-            visibilityCalendar(View.GONE)
-            visibilityList(View.VISIBLE)
+            val builder = AlertDialog.Builder(requireContext())
+            with(builder) {
+                setTitle("SIMPAN")
+                setMessage("Apakah anda yakin ingin menyimpan ini?")
+                setPositiveButton("Simpan") {_, _ ->
+                    val hariDao = db.getPenanggalanDao()
+                    val newHari = Penanggalan(binding.pilihHari.year, binding.pilihHari.month + 1, binding.pilihHari.dayOfMonth)
+                    hariDao.addPenanggalan(newHari)
+                    binding.hariList.adapter = BulanAdapter(hari, true)
+                    visibilityCalendar(View.GONE)
+                    visibilityList(View.VISIBLE)
+                }
+                setNegativeButton("Kembali") {_, _ ->}
+                show()
+            }
         }
 
         binding.hariList.adapter = BulanAdapter(hari, true)
