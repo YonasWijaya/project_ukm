@@ -65,61 +65,72 @@ class TambahKasHarianFragment : Fragment() {
         }
 
         binding.tipeData.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val list = db.getVarDao()
                 val isi: Array<String>
                 val penjelasan: String
-                val deskripsi: Boolean
+                fun isiDeskripsi(deskripsi: Boolean, isi: Array<String>) {
+                    binding.deskripsiData.isEnabled = deskripsi
+                    if(deskripsi) {
+                        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, isi)
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        binding.deskripsiData.adapter = adapter
+                    }
+                }
                 when(position){
                     0 -> {
                         isi = list.getNama("Produk") + "Lain-lain"
+                        isiDeskripsi(true, isi)
                         penjelasan = "Penjualan Tunai ${binding.deskripsiData.selectedItem} "
-                        deskripsi = true
                         debitKredit = 0
                     }
                     1 -> {
-                        penjelasan = "Penerimaan Piutang "
-                        deskripsi = false
                         isi = arrayOf("")
+                        isiDeskripsi(false, isi)
+                        penjelasan = "Penerimaan Piutang "
                         debitKredit = 0
                     }
                     2 -> {
                         isi = list.getNama("Bahan baku") + "Lain-lain"
+                        isiDeskripsi(true, isi)
                         penjelasan = "Pembelian ${binding.deskripsiData.selectedItem} "
-                        deskripsi = true
                         debitKredit = 1
                     }
                     3 -> {
-                        penjelasan = "Pembayaran Hutang "
-                        deskripsi = false
                         isi = arrayOf("")
+                        isiDeskripsi(false, isi)
+                        penjelasan = "Pembayaran Hutang "
                         debitKredit = 1
                     }
                     4 -> {
-                        penjelasan = "Pembayaran Gaji "
-                        deskripsi = false
                         isi = arrayOf("")
+                        isiDeskripsi(false, isi)
+                        penjelasan = "Pembayaran Gaji "
                         debitKredit = 1
                     }
                     5 -> {
-                        penjelasan = "Biaya "
-                        deskripsi = false
                         isi = arrayOf("")
+                        isiDeskripsi(false, isi)
+                        penjelasan = "Biaya "
                         debitKredit = 1
                     }
                     else -> {
                         penjelasan = ""
-                        deskripsi = false
-                        isi = arrayOf("")
                     }
                 }
-                binding.deskripsiData.isEnabled = deskripsi
-                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, isi)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.deskripsiData.adapter = adapter
+                binding.penjelasan2.text = penjelasan
+            }
+        }
+
+        binding.deskripsiData.onItemSelectedListener = object :AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {  }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val penjelasan: String = when(binding.tipeData.selectedItemPosition) {
+                    0 -> "Penjualan Tunai ${binding.deskripsiData.selectedItem} "
+                    2 -> "Pembelian ${binding.deskripsiData.selectedItem} "
+                    else -> ""
+                }
                 binding.penjelasan2.text = penjelasan
             }
         }

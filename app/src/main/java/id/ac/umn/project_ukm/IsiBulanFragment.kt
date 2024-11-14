@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import id.ac.umn.project_ukm.databinding.FragmentIsiBulanBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class IsiBulanFragment : Fragment() {
 
@@ -18,6 +21,9 @@ class IsiBulanFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentIsiBulanBinding>(inflater, R.layout.fragment_isi_bulan, container, false)
         val key = arguments?.getString("TahunBulanKey")
+        val tanggal = LocalDate.parse(key)
+        val format = DateTimeFormatter.ofPattern("MMMM yyyy", Locale("id", "ID"))
+        binding.namaBulan.text = tanggal.format(format)
         binding.btnJurnalHarian.setOnClickListener {
             val navController = it.findNavController()
             val bundle = Bundle()

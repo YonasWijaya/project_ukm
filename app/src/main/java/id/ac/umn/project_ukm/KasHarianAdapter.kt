@@ -23,7 +23,7 @@ RecyclerView.Adapter<KasHarianAdapter.KasHarianViewHolder>(){
         fun saldoAkhir()
     }
 
-    class  KasHarianViewHolder(item: View):RecyclerView.ViewHolder(item) {
+    class KasHarianViewHolder(item: View):RecyclerView.ViewHolder(item) {
         val keterangan: TextView = item.findViewById(R.id.keteranganHarianList)
         val pemasukan: TextView = item.findViewById(R.id.pemasukanHarianList)
         val pengeluaran: TextView = item.findViewById(R.id.pengeluaranHarianList)

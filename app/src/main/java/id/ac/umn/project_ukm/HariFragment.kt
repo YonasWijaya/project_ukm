@@ -1,14 +1,12 @@
 package id.ac.umn.project_ukm
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
-import id.ac.umn.project_ukm.databinding.FragmentBulanBinding
+import androidx.fragment.app.Fragment
 import id.ac.umn.project_ukm.databinding.FragmentHariBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -68,6 +66,9 @@ class HariFragment : Fragment() {
         }
 
         binding.hariList.adapter = BulanAdapter(hari, true)
+        val tanggal = LocalDate.parse(key)
+        val format = DateTimeFormatter.ofPattern("MMMM yyyy", Locale("id", "ID"))
+        "Jurnal Kas Harian\n{${tanggal.format(format)}}".also { binding.namaBulanHarian.text = it }
 
         return binding.root
     }

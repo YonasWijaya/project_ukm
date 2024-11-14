@@ -9,6 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import id.ac.umn.project_ukm.databinding.FragmentKasHarianBinding
 import java.text.NumberFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class KasHarianFragment : Fragment() {
@@ -39,6 +41,9 @@ class KasHarianFragment : Fragment() {
         val format = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
         binding.saldoAwal.text = format.format(saldo)
         setHasilAkhir(dao, format, penanggalan, saldo)
+        val tanggal = LocalDate.parse(key)
+        val formatTanggal = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale("id", "ID"))
+        binding.hariJurnal.text = tanggal.format(formatTanggal)
 
         val kas = dao.getHarian(penanggalan[0].toInt(), penanggalan[1].toInt(), penanggalan[2].toInt())
         val mutableKas = kas.toMutableList()

@@ -10,15 +10,23 @@ import androidx.navigation.findNavController
 import id.ac.umn.project_ukm.databinding.FragmentVariableBinding
 
 class VariableFragment : Fragment() {
+    private lateinit var binding: FragmentVariableBinding
+    private lateinit var db: DatabaseUKM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = DataBindingUtil.inflate<FragmentVariableBinding>(inflater, R.layout.fragment_variable, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_variable, container, false)
         binding.btnTambahVariable.setOnClickListener{
             it.findNavController().navigate(R.id.action_variableFragment_to_tambahVariableFragment)
         }
+        db = DatabaseUKM.getDatabase(requireContext())
+        val barang = db.getVarDao().getAllVar()
+        val mutableBarang = barang.toMutableList()
+        val adapter = BarangAdapter(mutableBarang)
+        binding.bahanList.adapter = adapter
+
         return binding.root
     }
 }

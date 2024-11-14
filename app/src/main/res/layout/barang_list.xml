@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:background="@drawable/table_line">
+        <TableRow
+            android:baselineAligned="false"
+            android:paddingVertical="@dimen/_5sdp">
+            <TextView
+                android:id="@+id/namaVariable"
+                android:textSize="@dimen/_7ssp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:scrollHorizontally="false"/>
+            <TextView
+                android:id="@+id/tipeVariable"
+                android:textSize="@dimen/_7ssp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_5sdp"/>
+            <Button
+                android:id="@+id/hapusVariable"
+                android:textSize="@dimen/_7ssp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:scaleX="0.75"
+                android:text="HAPUS"
+                android:backgroundTint="@color/design_default_color_error"
+                app:cornerRadius="0dp"/>
+        </TableRow>
+    </TableLayout>
+</layout>
